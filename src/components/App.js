@@ -1,10 +1,12 @@
 import React from 'react';
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,    
   gql,
 } from '@apollo/client';
 import MyComponent from './MyComponent';
+import CartList from './CartList';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +25,13 @@ class App extends React.Component {
       client.query({
           query: gql`
               query {
-                  hello
+                hello,
+                getCart(accountId: "sailormoon") {
+                  id,
+                  accountId,
+                  user,
+                  exportApproved
+                }
               }
           `
       })
@@ -35,11 +43,20 @@ class App extends React.Component {
   };
 
   render() {
-      const { value } = this.state;
+      const { value, getCart } = this.state;
 
       if(value) {
           return (
-              <MyComponent value={value} />
+              <Router>
+                  <Switch>
+                      <Route path="/cart_list">
+                          <CartList getCart={getCart} />
+                      </Route>                      
+                      <Route path="/">
+                          <MyComponent value={value} />
+                      </Route>
+                  </Switch>
+              </Router>
           )
       };
   };
