@@ -7,7 +7,7 @@ import {
     gql,
 } from '@apollo/client';
 
-let result = "";
+let resultTopass = "test";
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000',
@@ -22,10 +22,10 @@ client.query({
     `
 })
 .then(result => {
-    result = result;
+    resultTopass = result;
 });
 
 ReactDOM.render(
-    <App result={result} />, 
+    <App result={resultTopass} />, 
     document.getElementById('root')
 );

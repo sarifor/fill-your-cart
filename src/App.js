@@ -1,7 +1,7 @@
-function App() {
+function App(props) {
   return (
     <div>
-      <p>{this.props.result}</p>
+      <p>{props.result}</p>
       <p>Hello World! From Client</p>
     </div>
   );
