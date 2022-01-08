@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
+import App from './App';
 import {
     ApolloClient,
     InMemoryCache,    
@@ -40,7 +40,7 @@ class MyComponent extends React.Component {
 
         if(value) {
             return (
-                <>{value}</>
+                <App value={value} />
             )
         };
     };
