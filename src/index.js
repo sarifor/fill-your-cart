@@ -14,7 +14,9 @@ const client = new ApolloClient({
 
 client.query({
     query: gql`
-        query hello: String!
+        query {
+            hello
+        }
     `
 })
 .then(result => console.log(result));
