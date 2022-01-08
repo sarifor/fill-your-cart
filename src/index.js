@@ -1,31 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+// import App from './App';
 import {
     ApolloClient,
     InMemoryCache,    
     gql,
 } from '@apollo/client';
 
-let resultTopass = "test";
+class MyComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "test"
+        };
+    };
 
-const client = new ApolloClient({
-    uri: 'http://localhost:4000',
-    cache: new InMemoryCache()    
-})
+    componentDidMount() {
+        const client = new ApolloClient({
+            uri: 'http://localhost:4000',
+            cache: new InMemoryCache()    
+        });
+        
+        client.query({
+            query: gql`
+                query {
+                    hello
+                }
+            `
+        })
+        .then(result => {
+            this.setState({
+                value: result.data.hello,
+            });
+        });        
+    };
 
-client.query({
-    query: gql`
-        query {
-            hello
-        }
-    `
-})
-.then(result => {
-    resultTopass = result;
-});
+    render() {
+        const { value } = this.state;
+
+        if(value) {
+            return (
+                <>{value}</>
+            )
+        };
+    };
+}
 
 ReactDOM.render(
-    <App result={resultTopass} />, 
+    <MyComponent />, 
     document.getElementById('root')
 );
