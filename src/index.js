@@ -7,6 +7,8 @@ import {
     gql,
 } from '@apollo/client';
 
+let result = "";
+
 const client = new ApolloClient({
     uri: 'http://localhost:4000',
     cache: new InMemoryCache()    
@@ -19,9 +21,11 @@ client.query({
         }
     `
 })
-.then(result => console.log(result));
+.then(result => {
+    result = result;
+});
 
 ReactDOM.render(
-    <App />, 
+    <App result={result} />, 
     document.getElementById('root')
 );
