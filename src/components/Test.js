@@ -5,6 +5,6 @@ function Test(props) {
         <p>Hello World! From Client</p>
       </div>
     );
-  };
+};
   
-  export default Test;
+export default Test;
