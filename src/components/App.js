@@ -5,15 +5,14 @@ import {
   InMemoryCache,    
   gql,
 } from '@apollo/client';
-import MyComponent from './MyComponent';
+import Test from './Test';
 import CartList from './CartList';
 
 class App extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          value: "test",
-          accountId: "",
+          testValue: "test",
           items: [],
       };
   };
@@ -43,17 +42,16 @@ class App extends React.Component {
       })
       .then(result => {
           this.setState({
-              value: result.data.hello,
-              accountId: result.data.getCart.accountId,
+              testValue: result.data.hello,
               items: result.data.getCart.items,
           });
       });        
   };
 
   render() {
-      const { value, accountId, items } = this.state;
+      const { testValue, items } = this.state;
 
-      if(value) {
+      if(testValue) {
           return (
               <Router>
                   <Switch>
@@ -61,7 +59,7 @@ class App extends React.Component {
                           {items.map(item => <CartList name={item.name} price={item.price} />)}
                       </Route>                      
                       <Route path="/">
-                          <MyComponent value={value} />
+                          <Test testValue={testValue} />
                       </Route>
                   </Switch>
               </Router>

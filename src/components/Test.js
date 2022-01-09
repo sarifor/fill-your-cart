@@ -1,10 +1,10 @@
-function MyComponent(props) {
+function Test(props) {
     return (
       <div>
-        <p>{props.value}</p>
+        <p>{props.testValue}</p>
         <p>Hello World! From Client</p>
       </div>
     );
   };
   
-  export default MyComponent;
+  export default Test;
