@@ -41,26 +41,29 @@ class App extends React.Component {
           `
       })
       .then(result => {
+        const query = gql `
+            query {
+                hello
+            }
+        `
+
+        const myNewHello = {
+            hello: "Bye World!",
+        };
+
+        client.writeQuery({
+            query, 
+            data: {
+                hello: myNewHello
+            },
+        });
+
           this.setState({
               testValue: result.data.hello,
               items: result.data.getCart.items,
           });
       });        
       
-      client.writeQuery({
-        query: gql`
-            query {
-                hello,
-            }
-        `, 
-        data: {
-            __typename: 'String!',
-            hello: "Bye World!",
-        },
-        variables: {
-            hello: "Hello World!"
-        }
-      });
   };
 
   render() {
