@@ -58,7 +58,7 @@ class App extends React.Component {
               <Router>
                   <Switch>
                       <Route path="/cart_list">
-                          <CartList accountId={accountId} items={items} />
+                          {items.map(item => <CartList name={item.name} price={item.price} />)}
                       </Route>                      
                       <Route path="/">
                           <MyComponent value={value} />

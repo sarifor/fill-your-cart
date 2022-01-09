@@ -2,8 +2,8 @@ function CartList(props) {
     return (
       <div>
         <h3>CartList!</h3>
-        <p>{props.accountId}</p>
-        <p>{props.items}</p>
+        <p>{props.name}</p>
+        <p>{props.price}</p>
       </div>
     );
   };
