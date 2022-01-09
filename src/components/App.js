@@ -14,6 +14,7 @@ class App extends React.Component {
       this.state = {
           value: "test",
           accountId: "",
+          items: [],
       };
   };
 
@@ -31,6 +32,10 @@ class App extends React.Component {
                   id,
                   accountId,
                   user,
+                  items {
+                      name,
+                      price,
+                  },
                   exportApproved
                 }
               }
@@ -40,19 +45,20 @@ class App extends React.Component {
           this.setState({
               value: result.data.hello,
               accountId: result.data.getCart.accountId,
+              items: result.data.getCart.items,
           });
       });        
   };
 
   render() {
-      const { value, accountId } = this.state;
+      const { value, accountId, items } = this.state;
 
       if(value) {
           return (
               <Router>
                   <Switch>
                       <Route path="/cart_list">
-                          <CartList accountId={accountId} />
+                          <CartList accountId={accountId} items={items} />
                       </Route>                      
                       <Route path="/">
                           <MyComponent value={value} />

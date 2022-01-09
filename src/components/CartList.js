@@ -3,6 +3,7 @@ function CartList(props) {
       <div>
         <h3>CartList!</h3>
         <p>{props.accountId}</p>
+        <p>{props.items}</p>
       </div>
     );
   };
