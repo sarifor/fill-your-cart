@@ -58,8 +58,16 @@ class App extends React.Component {
             },
         });
 
+        const updatedHello = client.readQuery({
+            query: 
+            gql`
+            query {
+                hello
+            }`
+        });
+
           this.setState({
-              testValue: result.data.hello,
+              testValue: updatedHello.hello.hello,
               items: result.data.getCart.items,
           });
       });        
