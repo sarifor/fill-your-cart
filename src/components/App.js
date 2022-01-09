@@ -46,6 +46,21 @@ class App extends React.Component {
               items: result.data.getCart.items,
           });
       });        
+      
+      client.writeQuery({
+        query: gql`
+            query {
+                hello,
+            }
+        `, 
+        data: {
+            __typename: 'String!',
+            hello: "Bye World!",
+        },
+        variables: {
+            hello: "Hello World!"
+        }
+      });
   };
 
   render() {
