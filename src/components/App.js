@@ -4,6 +4,7 @@ import {
     ApolloClient,
     InMemoryCache,
     gql,
+    makeVar,
 } from '@apollo/client';
 import Test from './Test';
 import CartList from './CartList';
@@ -18,11 +19,26 @@ class App extends React.Component {
     };
     
     componentDidMount() {
+        const localCartsVar = makeVar(["cart1", "cart2"]);
+
         const client = new ApolloClient({
             uri: 'http://localhost:4000',
-            cache: new InMemoryCache()    
+            cache: new InMemoryCache({
+                typePolicies: {
+                    Query: {
+                        fields: {
+                            localCarts: {
+                                read() {
+                                    return localCartsVar();
+                                }
+                            }
+                        }
+                    }
+                }
+
+            })    
         });
-        
+     
         client.query({
             query: gql`
                 query {
@@ -36,7 +52,10 @@ class App extends React.Component {
                             price,
                         },
                         exportApproved
-                    }
+                    },
+                    getLocalCarts {
+                        localCarts @client
+                    },
                 }
             `
         })
@@ -61,6 +80,8 @@ class App extends React.Component {
                     }
                 `
             });
+
+            console.log(result);
 
             this.setState({
                 testValue: updatedHello.hello,
