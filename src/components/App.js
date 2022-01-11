@@ -24,14 +24,30 @@ class App extends React.Component {
 
         const dummy = [
             {
-                name: "Bitamin C",
-                price: 500,
+                id: 10,
+                accountId: "Ririka",
+                user: "eee",
+                items: [
+                    {
+                        name: "Bitamin C",
+                        price: 500,
+                    },
+                ],
+                exportedApproved: true,
             },
             {
-                name: "Choco pie",
-                price: 300,
+                id: 11,
+                accountId: "Precure",
+                user: "fff",
+                items: [
+                    {
+                        name: "Choco pie",
+                        price: 300,
+                    },
+                ],
+                exportedApproved: false,
             },            
-        ]
+        ];
 
         this.setState({
             // selectedItems: selectedItems,
@@ -135,17 +151,9 @@ class App extends React.Component {
                 `
             });
 
-            //Items from localCarts
-            const localcartsArr = result.data.localCarts;
-            let mergedItemsArr = [];
-
-            for(let i = 1; i < localcartsArr.length; i++) {
-                let items = localcartsArr[i].items;
-                mergedItemsArr = mergedItemsArr.concat(items);
-            };
-
             // Merge carts
-            const allItemsArr = result.data.getCart.items.concat(mergedItemsArr);
+            const serverCart = result.data.getCart;
+            const allItemsArr = serverCart.concat(result.data.localCarts);
 
             this.setState({
                 testValue: updatedHello.hello,
@@ -162,8 +170,8 @@ class App extends React.Component {
                 <Router>
                     <Switch>
                         <Route path="/cart_list">
-                            {items.map(item => <CartList name={item.name} price={item.price} saveSelectedItems={this.saveSelectedItems} isSelectedItems={false} />)}
-                            {selectedItems.map(selectedItem => <CartList name={selectedItem.name} price={selectedItem.price} isSelectedItems={true} />)}
+                            {items.map(item => <CartList id={item.id} name={item.name} price={item.price} saveSelectedItems={this.saveSelectedItems} isSelectedItems={false} />)}
+                            {selectedItems.map(selectedItem => <CartList id={selectedItem.id} name={selectedItem.name} price={selectedItem.price} isSelectedItems={true} />)}
                         </Route>                      
                         <Route path="/">
                             <Test testValue={testValue} />

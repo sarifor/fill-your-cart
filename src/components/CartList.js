@@ -15,6 +15,7 @@ class CartList extends React.Component {
           <p>Items Shared In Public</p>
         )}
 
+        <p>Id: {this.props.id}</p>
         <p>Item: {this.props.name}</p>
         <p>Price: {this.props.price}</p>
 
