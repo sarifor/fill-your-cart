@@ -9,6 +9,15 @@ import {
 import Test from './Test';
 import CartList from './CartList';
 
+function Each(props) {
+    return (
+        <>
+            <p>Name: {props.name}</p>
+            <p>Price: {props.price}</p>
+        </>
+    );
+};
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -170,8 +179,8 @@ class App extends React.Component {
                 <Router>
                     <Switch>
                         <Route path="/cart_list">
-                            {items.map(item => <CartList id={item.id} name={item.name} price={item.price} saveSelectedItems={this.saveSelectedItems} isSelectedItems={false} />)}
-                            {selectedItems.map(selectedItem => <CartList id={selectedItem.id} name={selectedItem.name} price={selectedItem.price} isSelectedItems={true} />)}
+                            {items.map(item => <CartList id={item.id} nameAndPrice={item.items.map(each => <Each name={each.name} price={each.price} />)} saveSelectedItems={this.saveSelectedItems} isSelectedItems={false} />)}
+                            {selectedItems.map(selectedItem => <CartList id={selectedItem.id} nameAndPrice={selectedItem.items.map(each => <Each name={each.name} price={each.price} />)} isSelectedItems={true} />)}
                         </Route>                      
                         <Route path="/">
                             <Test testValue={testValue} />

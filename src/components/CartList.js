@@ -16,8 +16,7 @@ class CartList extends React.Component {
         )}
 
         <p>Id: {this.props.id}</p>
-        <p>Item: {this.props.name}</p>
-        <p>Price: {this.props.price}</p>
+        <div>{this.props.nameAndPrice}</div>
 
         {this.props.isSelectedItems === false ? (
           <form onSubmit={this.handleSaveSelectedItems}>
