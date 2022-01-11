@@ -8,15 +8,7 @@ import {
 } from '@apollo/client';
 import Test from './Test';
 import CartList from './CartList';
-
-function Each(props) {
-    return (
-        <>
-            <p>Name: {props.name}</p>
-            <p>Price: {props.price}</p>
-        </>
-    );
-};
+import Each from './Each';
 
 class App extends React.Component {
     constructor(props) {
