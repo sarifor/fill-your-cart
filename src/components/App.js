@@ -15,9 +15,32 @@ class App extends React.Component {
         this.state = {
             testValue: "test",
             items: [],
+            selectedItems: [],
         };
     };
     
+    saveSelectedItems = (selectedItems) => {
+        console.log(selectedItems);
+
+        const dummy = [
+            {
+                name: "Bitamin C",
+                price: 500,
+            },
+            {
+                name: "Choco pie",
+                price: 300,
+            },            
+        ]
+
+        this.setState({
+            // selectedItems: selectedItems,
+            selectedItems: dummy,
+        });
+
+        console.log("Received value from child component!");
+    };
+
     componentDidMount() {
         const localCartsVar = makeVar([
             {
@@ -132,14 +155,15 @@ class App extends React.Component {
     };
     
     render() {
-        const { testValue, items } = this.state;
+        const { testValue, items, selectedItems } = this.state;
 
         if(testValue) {
             return (
                 <Router>
                     <Switch>
                         <Route path="/cart_list">
-                            {items.map(item => <CartList name={item.name} price={item.price} />)}
+                            {items.map(item => <CartList name={item.name} price={item.price} saveSelectedItems={this.saveSelectedItems} isSelectedItems={false} />)}
+                            {selectedItems.map(selectedItem => <CartList name={selectedItem.name} price={selectedItem.price} isSelectedItems={true} />)}
                         </Route>                      
                         <Route path="/">
                             <Test testValue={testValue} />
