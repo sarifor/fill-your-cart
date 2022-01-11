@@ -121,7 +121,7 @@ class App extends React.Component {
                 mergedItemsArr = mergedItemsArr.concat(items);
             };
 
-            // Items from getCart
+            // Merge carts
             const allItemsArr = result.data.getCart.items.concat(mergedItemsArr);
 
             this.setState({
