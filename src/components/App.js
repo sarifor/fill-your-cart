@@ -152,7 +152,7 @@ class App extends React.Component {
             });
 
             // Merge carts
-            const serverCart = result.data.getCart;
+            const serverCart = [result.data.getCart];
             const allItemsArr = serverCart.concat(result.data.localCarts);
 
             this.setState({
