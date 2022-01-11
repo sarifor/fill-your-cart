@@ -141,7 +141,7 @@ class App extends React.Component {
                     <Switch>
                         <Route path="/cart_list">
                             {items.map(item => <CartList id={item.id} nameAndPrice={item.items.map(each => <Each name={each.name} price={each.price} saveSelectedItems={this.saveSelectedItems} />)} isSelectedItems={false} />)}
-                            {selectedItems.map(selectedItem => <CartList id={selectedItem.id} nameAndPrice={selectedItem.items.map(each => <Each name={each.name} price={each.price} />)} isSelectedItems={true} />)}
+                            {selectedItems?.map(selectedItem => <CartList id={selectedItem.id} nameAndPrice={selectedItem.items?.map(each => <Each name={each.name} price={each.price} />)} isSelectedItems={true} />)}
                         </Route>                      
                         <Route path="/">
                             <Test testValue={testValue} />
