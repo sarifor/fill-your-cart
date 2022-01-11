@@ -53,9 +53,7 @@ class App extends React.Component {
                         },
                         exportApproved
                     },
-                    getLocalCarts {
-                        localCarts @client
-                    },
+                    localCarts @client
                 }
             `
         })
