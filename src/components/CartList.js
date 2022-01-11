@@ -1,11 +1,6 @@
 import React from "react";
 
 class CartList extends React.Component {
-  handleSaveSelectedItems = (e) => {
-    e.preventDefault();
-    this.props.saveSelectedItems("Seleted!");
-  };
-
   render() {
     return (
       <div>
@@ -18,13 +13,6 @@ class CartList extends React.Component {
         <p>Id: {this.props.id}</p>
         <div>{this.props.nameAndPrice}</div>
 
-        {this.props.isSelectedItems === false ? (
-          <form onSubmit={this.handleSaveSelectedItems}>
-            <button type="submit">Click!</button>
-          </form>
-        ) : (
-          <p></p>
-        )}
       </div>
     );
   };

@@ -22,40 +22,6 @@ class App extends React.Component {
     
     saveSelectedItems = (selectedItems) => {
         console.log(selectedItems);
-
-        const dummy = [
-            {
-                id: 10,
-                accountId: "Ririka",
-                user: "eee",
-                items: [
-                    {
-                        name: "Bitamin C",
-                        price: 500,
-                    },
-                ],
-                exportedApproved: true,
-            },
-            {
-                id: 11,
-                accountId: "Precure",
-                user: "fff",
-                items: [
-                    {
-                        name: "Choco pie",
-                        price: 300,
-                    },
-                ],
-                exportedApproved: false,
-            },            
-        ];
-
-        this.setState({
-            // selectedItems: selectedItems,
-            selectedItems: dummy,
-        });
-
-        console.log("Received value from child component!");
     };
 
     componentDidMount() {
@@ -171,7 +137,7 @@ class App extends React.Component {
                 <Router>
                     <Switch>
                         <Route path="/cart_list">
-                            {items.map(item => <CartList id={item.id} nameAndPrice={item.items.map(each => <Each name={each.name} price={each.price} />)} saveSelectedItems={this.saveSelectedItems} isSelectedItems={false} />)}
+                            {items.map(item => <CartList id={item.id} nameAndPrice={item.items.map(each => <Each name={each.name} price={each.price} saveSelectedItems={this.saveSelectedItems} />)} isSelectedItems={false} />)}
                             {selectedItems.map(selectedItem => <CartList id={selectedItem.id} nameAndPrice={selectedItem.items.map(each => <Each name={each.name} price={each.price} />)} isSelectedItems={true} />)}
                         </Route>                      
                         <Route path="/">
