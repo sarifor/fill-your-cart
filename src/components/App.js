@@ -19,7 +19,40 @@ class App extends React.Component {
     };
     
     componentDidMount() {
-        const localCartsVar = makeVar(["cart1", "cart2"]);
+        const localCartsVar = makeVar([
+            {
+                id: 3,
+                accountId: "Saint Tail",
+                user: "ccc",
+                items: [
+                    {
+                        name: "Bread",
+                        price: 600,
+                    },
+                    {
+                        name: "Salad",
+                        price: 100,
+                    },            
+                ],
+                exportApproved: true,
+            },
+            {
+                id: 4,
+                accountId: "Card Capture Sakura",
+                user: "ddd",
+                items: [
+                    {
+                        name: "Cake",
+                        price: 500,
+                    },
+                    {
+                        name: "Juice",
+                        price: 200,
+                    },            
+                ],
+                exportApproved: false,
+            },             
+        ]);
 
         const client = new ApolloClient({
             uri: 'http://localhost:4000',
@@ -79,11 +112,21 @@ class App extends React.Component {
                 `
             });
 
-            console.log(result);
+            //Items from localCarts
+            const localcartsArr = result.data.localCarts;
+            let mergedItemsArr = [];
+
+            for(let i = 1; i < localcartsArr.length; i++) {
+                let items = localcartsArr[i].items;
+                mergedItemsArr = mergedItemsArr.concat(items);
+            };
+
+            // Items from getCart
+            const allItemsArr = result.data.getCart.items.concat(mergedItemsArr);
 
             this.setState({
                 testValue: updatedHello.hello,
-                items: result.data.getCart.items,
+                items: allItemsArr,
             });
         });
     };
