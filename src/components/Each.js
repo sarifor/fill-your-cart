@@ -19,7 +19,7 @@ class Each extends React.Component {
                 <p>Name: {this.props.name}</p>
                 <p>Price: {this.props.price}</p>
 
-                {this.props.isSelectedItems === false ? 
+                {this.props.isSelectedItems !== true ? 
                     <form onSubmit={this.handleSaveSelectedItems}>
                         <button type="submit">Click!</button>
                     </form>
