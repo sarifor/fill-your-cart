@@ -24,7 +24,7 @@ class App extends React.Component {
         this.setState((state) => {
             return {selectedItems: state.selectedItems.concat(selectedItems)}
         });
-        console.log(this.state.selectedItems);
+        // console.log(this.state.selectedItems);
     };
 
     componentDidMount() {
@@ -134,6 +134,7 @@ class App extends React.Component {
     
     render() {
         const { testValue, items, selectedItems } = this.state;
+        console.log(selectedItems);
 
         if(testValue) {
             return (
