@@ -15,6 +15,7 @@ class Each extends React.Component {
     render() {
         return (
             <>
+                {this.props.isSelectedItems === true ? <p>[Items selected by anonymous user]</p> : <p></p>}
                 <p>Name: {this.props.name}</p>
                 <p>Price: {this.props.price}</p>
 
