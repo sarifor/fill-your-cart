@@ -21,10 +21,10 @@ class App extends React.Component {
     };
     
     saveSelectedItems = (selectedItems) => {
-        this.setState({
-            selectedItems: this.state.selectedItems.concat(selectedItems)
+        this.setState((state) => {
+            return {selectedItems: state.selectedItems.concat(selectedItems)}
         });
-        console.log(selectedItems);
+        console.log(this.state.selectedItems);
     };
 
     componentDidMount() {
